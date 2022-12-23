@@ -1,30 +1,20 @@
+import "./App.css";
 import React from 'react';
-const  App =()=>
-{
-  return(
-    <div >
-      <h1>hello</h1>
-    </div>
-  )
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import Register from "./Views/Register";
+function App() {
+  const client = new ApolloClient({
+    cache: new InMemoryCache(),
+    uri: "http://emailproject-env.eba-pwtpkn6y.ap-south-1.elasticbeanstalk.com/graphql",
+  
+  });
+  return (
+    <ApolloProvider client={client}>
+      <div className="App">
+        <Register />
+      </div>
+    </ApolloProvider>
+  );
 }
-// import register from './register';
-// import { ApolloProvider} from '@apollo/client'
-// import './App.css';
-// import './index.css';
-// import { ApolloClient } from '@apollo/client';
 
-// const client = new ApolloClient({
-//   uri: "http://localhost:8000/graphql/",
-// });
-
-// const App = () => {
-//   return (
-//     <ApolloProvider client={client}>
-//     <div className='App'>
-//       <register/>
-//     </div>
-//     </ApolloProvider>
-//   )
-// }
-// export default App;
-
+export default App;
